@@ -1,0 +1,6 @@
+{
+    "smtpServerURL" : "smtp.naver.com",
+    "authUser" : "chojababo",
+    "authPass" : "choja123",
+    "fromEmail" : "chojababo@naver.com"
+}
