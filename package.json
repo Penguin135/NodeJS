@@ -1,0 +1,22 @@
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "description": "node js study",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Penguin135/NodeJS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Penguin135/NodeJS/issues"
+  },
+  "homepage": "https://github.com/Penguin135/NodeJS#readme",
+  "dependencies": {
+    "nodemailer": "^6.4.14"
+  }
+}
