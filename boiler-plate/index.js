@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser')
 
 const config = require('./config/key')
 
+const { auth } = require('./middleware/auth')
 const { User } = require('./models/User')
 
 const mongoose = require('mongoose')
@@ -22,7 +23,7 @@ app.get('/', (req, res) => {
   res.send('Hello World!!')
 })
 
-app.post('/register', (req, res) => {
+app.post('/api/users/register', (req, res) => {
   // get information from clinet, insert infromation into database
   const user = new User(req.body)
   user.save((err, userInfo) => {
@@ -33,10 +34,9 @@ app.post('/register', (req, res) => {
   })
 })
 
-app.post('/login', (req, res) => {
+app.post('/api/users/login', (req, res) => {
   // 1. find email in database
   User.findOne({ email: req.body.email }, (err, user) => {
-    console.log(user)
     if (!user) {
       return res.json({
         loginSuccess: false,
@@ -56,6 +56,20 @@ app.post('/login', (req, res) => {
           .json({ loginSuccess: true, userid: user._id })
       })
     })
+  })
+})
+
+// add auth middle ware
+app.get('/api/users/auth', auth, (req, res)=>{
+  // if this block started, auth middle ware is success
+
+  res.status(200).json({
+    _id: req.user._id,
+    isAdmin: req.user.role === 0 ? false : true, // role 0 : normal user, role not 0 : admin
+    email: req.user.email,
+    name: req.user.name,
+    role: req.user.role,
+    image: req.user.image
   })
 })
 
