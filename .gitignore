@@ -1,3 +1,4 @@
-/config/nodemailer.json
+nodemailer.json
 
 node_modules
+dev.js
